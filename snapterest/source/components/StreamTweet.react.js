@@ -15,6 +15,37 @@ var StreamTweet = React.createClass({
         };
     },
 
+    componentWillMount: function() {
+        console.log('[Snapterest] StreamTweet: 2. Running componentWillMount()');
+
+        this.setState({
+            numberOfCharactersIsIncreasing: true,
+            headerText: 'Latest Public Photo from Twitter'
+        });
+
+        window.snapterest = {
+            numberOfReceivedTweets: 1,
+            numberOfDisplayedTweets: 1
+        };
+
+    },
+
+    componentDidMount: function() {
+        console.log('[Snapterest] StreatTweet: 3. Running componentDidMount()');
+
+        var componentDOMRepresentation = ReactDOM.findDOMNode(this);
+
+        window.snapterest.headerHtml = componentDOMRepresentation.children[0].outerHTML;
+        window.snapterest.headerHtml = componentDOMRepresentation.children[1].outerHTML;
+
+    },
+
+
+    componentWillUnmount: function() {
+        console.log('[Snapterest] StreamTweet: 8. Running componentWillUnmount()');
+        delete window.snapterest;
+    },
+
 
     render: function() {
         console.log('[Snapterest] StreamTweet: Running render()');
